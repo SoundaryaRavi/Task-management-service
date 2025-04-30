@@ -4,7 +4,7 @@ const { HTTP_STATUS_CODES } = require('../constants/constants');
 const login = async (req, res) => {
     try {
         const token = await loginUser(req.body);
-        return await res.status(HTTP_STATUS_CODES.SUCCESS).json({ token: token });
+        return await res.status(HTTP_STATUS_CODES.SUCCESS).json({ token });
     }
     catch (err) {
         return res.status(HTTP_STATUS_CODES.ERROR).send(err);
@@ -14,7 +14,7 @@ const login = async (req, res) => {
 const register = async (req, res) => {
     try {
         const token = await registerUser(req.body);
-        return await res.status(HTTP_STATUS_CODES.CREATED).json({ token: token });
+        return await res.status(HTTP_STATUS_CODES.CREATED).json({ token });
     }
     catch (err) {
         return res.status(HTTP_STATUS_CODES.ERROR).send(err);

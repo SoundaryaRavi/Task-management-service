@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 let app = express();
 const route = require('./routes/route');
 
-let mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/';
+let mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/task';
 
 mongoose.connect(mongoUrl);
 
