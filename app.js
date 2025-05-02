@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(cors.allowCrossDomain);
 
-let mongoUrl = process.env.MONGODB_URL || "mongodb+srv://Soundarya:Mongo*123@cluster0.a8fmlqw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0"
+let mongoUrl = process.env.MONGODB_URL || "mongodb://localhost:27017/task"
 
 mongoose.connect(mongoUrl).then((res) => {
     console.log('Connected to DB');
