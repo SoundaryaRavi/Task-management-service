@@ -13,7 +13,7 @@ const taskSchema = new Schema(
       trim: true,
     },
     status: {
-      type: Boolean,
+      type: String,
       default: false,
     },
     createdBy: {

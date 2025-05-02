@@ -1,6 +1,7 @@
 const { handleParamErr } = require('../services/error.service');
 const { getSignedToken } = require('../middlewares/token');
 const { findUser, isPasswordCorrect, isUserExists, isUserExistsAlready, createUser } = require('../services/user.service');
+const { HTTP_STATUS_CODES } = require('../constants/constants');
 
 const loginUser = async (data) => {
     try {
@@ -14,7 +15,7 @@ const loginUser = async (data) => {
     }
     catch (err) {
         throw {
-            status: HTTP_STATUS.ERROR,
+            status: HTTP_STATUS_CODES.ERROR,
             message: err
         };
     }
@@ -32,7 +33,7 @@ const registerUser = async (data) => {
     }
     catch (err) {
         throw {
-            status: HTTP_STATUS.ERROR,
+            status: HTTP_STATUS_CODES.ERROR,
             message: err
         };
     }

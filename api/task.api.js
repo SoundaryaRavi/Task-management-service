@@ -4,7 +4,7 @@ const { HTTP_STATUS_CODES } = require("../constants/constants");
 
 const createTask = async (data, userId) => {
   try {
-    if (!data || !data.title || userId) {
+    if (!data || !data.title || !userId) {
       return handleParamErr();
     }
     return await taskService.create({
@@ -15,7 +15,7 @@ const createTask = async (data, userId) => {
     });
   } catch (error) {
     throw {
-      status: HTTP_STATUS.ERROR,
+      status: HTTP_STATUS_CODES.ERROR,
       message: error,
     };
   }
@@ -28,7 +28,7 @@ const fetchAllTasks = async (data, userId) => {
     return await taskService.findAll({ limit, offset, userId });
   } catch (error) {
     throw {
-      status: HTTP_STATUS.ERROR,
+      status: HTTP_STATUS_CODES.ERROR,
       message: error,
     };
   }
@@ -52,7 +52,7 @@ const fetchOneTask = async (id) => {
     };
   } catch (error) {
     throw {
-      status: HTTP_STATUS.ERROR,
+      status: HTTP_STATUS_CODES.ERROR,
       message: error,
     };
   }
@@ -65,7 +65,7 @@ const updateTask = async (id, data) => {
     return await taskService.update(id, data);
   } catch (error) {
     throw {
-      status: HTTP_STATUS.ERROR,
+      status: HTTP_STATUS_CODES.ERROR,
       message: error,
     };
   }
@@ -78,7 +78,7 @@ const deleteTask = async (id) => {
     return await taskService.update(id, { status: false });
   } catch (error) {
     throw {
-      status: HTTP_STATUS.ERROR,
+      status: HTTP_STATUS_CODES.ERROR,
       message: error,
     };
   }
