@@ -1,16 +1,28 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+require('dotenv').config()
 
-let app = express();
+const cors = require('./middlewares/cors');
 const route = require('./routes/route');
 
-let mongoUrl = process.env.MONGODB_URL || 'mongodb://localhost:27017/task';
+let app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-mongoose.connect(mongoUrl);
+app.use(cors.allowCrossDomain);
+
+let mongoUrl = process.env.MONGODB_URL || "mongodb+srv://Soundarya:Mongo*123@cluster0.a8fmlqw.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0"
+
+mongoose.connect(mongoUrl).then((res) => {
+    console.log('Connected to DB');
+}).catch((error) => {
+    console.log('Error while connecting to DB');
+});
 
 const port = process.env.PORT || 8080;
 
-app.use('/', route);
+app.use('/api', route);
 
 app.listen(port);
 

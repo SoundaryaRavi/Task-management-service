@@ -18,7 +18,7 @@ const isUserExists = (user) => {
 const isUserExistsAlready = (user) => {
     if (user) {
         throw {
-            status: HTTP_STATUS.BAD_REQUEST,
+            status: HTTP_STATUS_CODES.BAD_REQUEST,
             message: 'User already exists'
         }
     }
@@ -41,13 +41,13 @@ const createUser = async (userDetails) => {
         newUser.email = userDetails.email;
         newUser.name = userDetails.name;
         await newUser.setPassword(userDetails.password);
-        let savedUser = await updatedNewUser.save();
+        let savedUser = await newUser.save();
         return savedUser;
     }
     catch (err) {
         throw {
             message: err,
-            status: HTTP_STATUS.ERROR
+            status: HTTP_STATUS_CODES.ERROR
         }
     }
 }
